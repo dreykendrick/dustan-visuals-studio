@@ -166,7 +166,7 @@ function Index() {
                   <Link
                     to="/work/$slug"
                     params={{ slug: p.slug }}
-                    className="group block"
+                    className="hover-lift group block"
                     aria-label={`View project: ${p.title}`}
                   >
                     <WorkFrame
