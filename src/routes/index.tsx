@@ -34,10 +34,16 @@ function Index() {
   return (
     <>
       {/* HERO */}
-      <section className="pt-32 pb-16 md:pt-44 md:pb-24">
-        <div className={shell}>
+      <section className="relative overflow-hidden pt-32 pb-16 md:pt-44 md:pb-24">
+        <span aria-hidden="true" className="glow-orb -left-24 top-10 size-[26rem]" />
+        <span
+          aria-hidden="true"
+          className="glow-orb right-0 top-52 size-[22rem] [animation-delay:-4s]"
+        />
+        <div className={`relative ${shell}`}>
           <div className="grid gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
             <div>
+
               <Reveal>
                 <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
                   <span
@@ -83,17 +89,23 @@ function Index() {
                 priority
                 image={{ ...cover(0), ratio: "3/4" }}
                 label="Featured work"
-                className="col-span-1"
+                className="float-slow col-span-1"
               />
               <div className="flex flex-col gap-3 sm:gap-4">
                 <WorkFrame
                   priority
                   image={{ ...cover(1), ratio: "1/1" }}
                   label="Featured work"
+                  className="float-slow [animation-delay:-2.5s]"
                 />
-                <WorkFrame image={{ ...cover(2), ratio: "4/3" }} label="Featured work" />
+                <WorkFrame
+                  image={{ ...cover(2), ratio: "4/3" }}
+                  label="Featured work"
+                  className="float-slow [animation-delay:-5s]"
+                />
               </div>
             </Reveal>
+
           </div>
 
           <div className="mt-16 flex items-center gap-3 text-xs text-muted-foreground md:mt-24">
@@ -111,18 +123,22 @@ function Index() {
               Trusted with visual design across multiple industries.
             </h2>
           </Reveal>
-          <Reveal delay={100}>
-            <ul className="flex flex-wrap items-center gap-x-8 gap-y-3">
-              {site.companies.map((c) => (
-                <li
-                  key={c}
-                  className="font-display text-base tracking-tight text-muted-foreground md:text-lg"
-                >
-                  {c}
-                </li>
-              ))}
-            </ul>
+          <Reveal delay={100} className="lg:max-w-[52%]">
+            <div className="relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)]">
+              <ul className="marquee-track items-center gap-x-8">
+                {[...site.companies, ...site.companies].map((c, i) => (
+                  <li
+                    key={`${c}-${i}`}
+                    aria-hidden={i >= site.companies.length ? "true" : undefined}
+                    className="whitespace-nowrap font-display text-base tracking-tight text-muted-foreground transition-colors hover:text-foreground md:text-lg"
+                  >
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </Reveal>
+
         </div>
       </section>
 
@@ -150,7 +166,7 @@ function Index() {
                   <Link
                     to="/work/$slug"
                     params={{ slug: p.slug }}
-                    className="group block"
+                    className="hover-lift group block"
                     aria-label={`View project: ${p.title}`}
                   >
                     <WorkFrame
@@ -261,7 +277,7 @@ function Index() {
               <Reveal
                 key={s.title}
                 delay={i * 50}
-                className="border-b border-border px-0 py-8 md:px-8 md:odd:border-r lg:px-10 lg:odd:border-r-0 lg:[&:not(:nth-child(3n))]:border-r md:[&:first-child]:pl-0 lg:[&:first-child]:pl-0"
+                className="hover-lift border-b border-border px-0 py-8 hover:bg-secondary/40 md:px-8 md:odd:border-r lg:px-10 lg:odd:border-r-0 lg:[&:not(:nth-child(3n))]:border-r md:[&:first-child]:pl-0 lg:[&:first-child]:pl-0"
               >
                 <h3 className="font-display text-xl font-medium md:text-2xl">{s.title}</h3>
                 <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
@@ -278,7 +294,7 @@ function Index() {
               {software.map((t) => (
                 <li
                   key={t.name}
-                  className="flex items-baseline justify-between gap-4 border-b border-border py-4"
+                  className="flex items-baseline justify-between gap-4 border-b border-border py-4 transition-all duration-500 hover:border-signal hover:px-2"
                 >
                   <span className="font-display text-base md:text-lg">{t.name}</span>
                   <span className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
@@ -306,7 +322,7 @@ function Index() {
                 key={e.company}
                 delay={i * 60}
                 as="li"
-                className="grid gap-4 border-b border-border py-8 md:grid-cols-12 md:gap-8 md:py-10"
+                className="group grid gap-4 border-b border-border py-8 transition-colors duration-500 hover:bg-secondary/40 md:grid-cols-12 md:gap-8 md:py-10"
               >
                 <div className="md:col-span-4">
                   <h3 className="font-display text-2xl font-medium">{e.company}</h3>
