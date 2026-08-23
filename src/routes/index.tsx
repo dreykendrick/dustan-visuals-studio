@@ -89,17 +89,23 @@ function Index() {
                 priority
                 image={{ ...cover(0), ratio: "3/4" }}
                 label="Featured work"
-                className="col-span-1"
+                className="float-slow col-span-1"
               />
               <div className="flex flex-col gap-3 sm:gap-4">
                 <WorkFrame
                   priority
                   image={{ ...cover(1), ratio: "1/1" }}
                   label="Featured work"
+                  className="float-slow [animation-delay:-2.5s]"
                 />
-                <WorkFrame image={{ ...cover(2), ratio: "4/3" }} label="Featured work" />
+                <WorkFrame
+                  image={{ ...cover(2), ratio: "4/3" }}
+                  label="Featured work"
+                  className="float-slow [animation-delay:-5s]"
+                />
               </div>
             </Reveal>
+
           </div>
 
           <div className="mt-16 flex items-center gap-3 text-xs text-muted-foreground md:mt-24">
