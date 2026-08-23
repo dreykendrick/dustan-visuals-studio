@@ -294,7 +294,7 @@ function Index() {
               {software.map((t) => (
                 <li
                   key={t.name}
-                  className="flex items-baseline justify-between gap-4 border-b border-border py-4"
+                  className="flex items-baseline justify-between gap-4 border-b border-border py-4 transition-all duration-500 hover:border-signal hover:px-2"
                 >
                   <span className="font-display text-base md:text-lg">{t.name}</span>
                   <span className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
