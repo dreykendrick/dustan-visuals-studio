@@ -322,7 +322,7 @@ function Index() {
                 key={e.company}
                 delay={i * 60}
                 as="li"
-                className="grid gap-4 border-b border-border py-8 md:grid-cols-12 md:gap-8 md:py-10"
+                className="group grid gap-4 border-b border-border py-8 transition-colors duration-500 hover:bg-secondary/40 md:grid-cols-12 md:gap-8 md:py-10"
               >
                 <div className="md:col-span-4">
                   <h3 className="font-display text-2xl font-medium">{e.company}</h3>
