@@ -34,10 +34,16 @@ function Index() {
   return (
     <>
       {/* HERO */}
-      <section className="pt-32 pb-16 md:pt-44 md:pb-24">
-        <div className={shell}>
+      <section className="relative overflow-hidden pt-32 pb-16 md:pt-44 md:pb-24">
+        <span aria-hidden="true" className="glow-orb -left-24 top-10 size-[26rem]" />
+        <span
+          aria-hidden="true"
+          className="glow-orb right-0 top-52 size-[22rem] [animation-delay:-4s]"
+        />
+        <div className={`relative ${shell}`}>
           <div className="grid gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
             <div>
+
               <Reveal>
                 <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
                   <span
