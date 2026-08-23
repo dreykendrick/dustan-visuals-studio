@@ -60,40 +60,44 @@
 :root {
   --radius: 0.25rem;
 
-  --paper: oklch(0.976 0.005 95);
-  --ink: oklch(0.19 0.006 60);
-  --stone: oklch(0.55 0.006 70);
-  --hairline: oklch(0.885 0.005 85);
-  --signal: oklch(0.62 0.16 44);
+  /* Dark editorial: charcoal ink surfaces, warm off-white type */
+  --paper: oklch(0.965 0.005 95);
+  --ink: oklch(0.145 0.006 60);
+  --stone: oklch(0.66 0.008 80);
+  --hairline: oklch(0.29 0.006 70);
+  --signal: oklch(0.72 0.15 52);
 
-  --background: var(--paper);
-  --foreground: var(--ink);
-  --card: oklch(0.992 0.003 95);
-  --card-foreground: var(--ink);
-  --popover: oklch(0.992 0.003 95);
-  --popover-foreground: var(--ink);
-  --primary: var(--ink);
-  --primary-foreground: var(--paper);
-  --secondary: oklch(0.945 0.005 90);
-  --secondary-foreground: var(--ink);
-  --muted: oklch(0.945 0.005 90);
+  --background: oklch(0.155 0.006 65);
+  --foreground: var(--paper);
+  --card: oklch(0.19 0.006 65);
+  --card-foreground: var(--paper);
+  --popover: oklch(0.19 0.006 65);
+  --popover-foreground: var(--paper);
+  --primary: var(--paper);
+  --primary-foreground: oklch(0.145 0.006 60);
+  --secondary: oklch(0.225 0.006 70);
+  --secondary-foreground: var(--paper);
+  --muted: oklch(0.225 0.006 70);
   --muted-foreground: var(--stone);
-  --accent: oklch(0.93 0.006 88);
-  --accent-foreground: var(--ink);
-  --destructive: oklch(0.55 0.2 27);
+  --accent: oklch(0.26 0.007 70);
+  --accent-foreground: var(--paper);
+  --destructive: oklch(0.58 0.2 27);
   --destructive-foreground: var(--paper);
   --border: var(--hairline);
   --input: var(--hairline);
-  --ring: oklch(0.6 0.01 70);
-  --sidebar: var(--paper);
-  --sidebar-foreground: var(--ink);
-  --sidebar-primary: var(--ink);
-  --sidebar-primary-foreground: var(--paper);
+  --ring: oklch(0.72 0.01 80);
+  --sidebar: oklch(0.19 0.006 65);
+  --sidebar-foreground: var(--paper);
+  --sidebar-primary: var(--paper);
+  --sidebar-primary-foreground: oklch(0.145 0.006 60);
   --sidebar-accent: var(--accent);
-  --sidebar-accent-foreground: var(--ink);
+  --sidebar-accent-foreground: var(--paper);
   --sidebar-border: var(--hairline);
   --sidebar-ring: var(--ring);
+
+  color-scheme: dark;
 }
+
 
 @layer base {
   * {
