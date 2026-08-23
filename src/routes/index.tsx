@@ -27,6 +27,9 @@ export const Route = createFileRoute("/")({
 
 const shell = "mx-auto max-w-[88rem] px-6 md:px-10";
 
+const FALLBACK_COVER = { alt: "Selected design work by Dustan Kibaja" };
+const cover = (i: number) => sortedProjects[i]?.cover ?? FALLBACK_COVER;
+
 function Index() {
   return (
     <>
@@ -78,17 +81,17 @@ function Index() {
             <Reveal delay={200} className="grid grid-cols-2 gap-3 self-end sm:gap-4">
               <WorkFrame
                 priority
-                image={{ ...sortedProjects[0].cover, ratio: "3/4" }}
+                image={{ ...cover(0), ratio: "3/4" }}
                 label="Featured work"
                 className="col-span-1"
               />
               <div className="flex flex-col gap-3 sm:gap-4">
                 <WorkFrame
                   priority
-                  image={{ ...sortedProjects[1].cover, ratio: "1/1" }}
+                  image={{ ...cover(1), ratio: "1/1" }}
                   label="Featured work"
                 />
-                <WorkFrame image={{ ...sortedProjects[2].cover, ratio: "4/3" }} label="Featured work" />
+                <WorkFrame image={{ ...cover(2), ratio: "4/3" }} label="Featured work" />
               </div>
             </Reveal>
           </div>
@@ -143,7 +146,7 @@ function Index() {
                 "md:col-span-7 md:mt-24",
               ];
               return (
-                <Reveal key={p.slug} className={layouts[i % layouts.length]}>
+                <Reveal key={p.slug} className={layouts[i % layouts.length] ?? ""}>
                   <Link
                     to="/work/$slug"
                     params={{ slug: p.slug }}
