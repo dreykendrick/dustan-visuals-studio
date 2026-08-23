@@ -123,18 +123,22 @@ function Index() {
               Trusted with visual design across multiple industries.
             </h2>
           </Reveal>
-          <Reveal delay={100}>
-            <ul className="flex flex-wrap items-center gap-x-8 gap-y-3">
-              {site.companies.map((c) => (
-                <li
-                  key={c}
-                  className="font-display text-base tracking-tight text-muted-foreground md:text-lg"
-                >
-                  {c}
-                </li>
-              ))}
-            </ul>
+          <Reveal delay={100} className="lg:max-w-[52%]">
+            <div className="relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)]">
+              <ul className="marquee-track items-center gap-x-8">
+                {[...site.companies, ...site.companies].map((c, i) => (
+                  <li
+                    key={`${c}-${i}`}
+                    aria-hidden={i >= site.companies.length ? "true" : undefined}
+                    className="whitespace-nowrap font-display text-base tracking-tight text-muted-foreground transition-colors hover:text-foreground md:text-lg"
+                  >
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </Reveal>
+
         </div>
       </section>
 
