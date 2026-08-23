@@ -277,7 +277,7 @@ function Index() {
               <Reveal
                 key={s.title}
                 delay={i * 50}
-                className="border-b border-border px-0 py-8 md:px-8 md:odd:border-r lg:px-10 lg:odd:border-r-0 lg:[&:not(:nth-child(3n))]:border-r md:[&:first-child]:pl-0 lg:[&:first-child]:pl-0"
+                className="hover-lift border-b border-border px-0 py-8 hover:bg-secondary/40 md:px-8 md:odd:border-r lg:px-10 lg:odd:border-r-0 lg:[&:not(:nth-child(3n))]:border-r md:[&:first-child]:pl-0 lg:[&:first-child]:pl-0"
               >
                 <h3 className="font-display text-xl font-medium md:text-2xl">{s.title}</h3>
                 <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
