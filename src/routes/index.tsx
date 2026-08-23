@@ -153,7 +153,10 @@ function Index() {
                     className="group block"
                     aria-label={`View project: ${p.title}`}
                   >
-                    <WorkFrame image={p.cover} label={`${p.index} — ${p.company}`} />
+                    <WorkFrame
+                      image={{ ...p.cover, ratio: i % 2 === 0 ? "4/3" : "4/5" }}
+                      label={`${p.index} — ${p.company}`}
+                    />
                     <div className="mt-5 flex items-start justify-between gap-6">
                       <div>
                         <p className="eyebrow">
