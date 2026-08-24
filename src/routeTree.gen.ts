@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkSlugRouteImport } from './routes/work.$slug'
+import { Route as ApiPublicSiteImageSplatRouteImport } from './routes/api/public/site-image/$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const WorkSlugRoute = WorkSlugRouteImport.update({
   path: '/work/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicSiteImageSplatRoute = ApiPublicSiteImageSplatRouteImport.update({
+  id: '/api/public/site-image/$',
+  path: '/api/public/site-image/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/work/$slug': typeof WorkSlugRoute
+  '/api/public/site-image/$': typeof ApiPublicSiteImageSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/work/$slug': typeof WorkSlugRoute
+  '/api/public/site-image/$': typeof ApiPublicSiteImageSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/work/$slug': typeof WorkSlugRoute
+  '/api/public/site-image/$': typeof ApiPublicSiteImageSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/work/$slug'
+  fullPaths: '/' | '/work/$slug' | '/api/public/site-image/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/work/$slug'
-  id: '__root__' | '/' | '/work/$slug'
+  to: '/' | '/work/$slug' | '/api/public/site-image/$'
+  id: '__root__' | '/' | '/work/$slug' | '/api/public/site-image/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   WorkSlugRoute: typeof WorkSlugRoute
+  ApiPublicSiteImageSplatRoute: typeof ApiPublicSiteImageSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/site-image/$': {
+      id: '/api/public/site-image/$'
+      path: '/api/public/site-image/$'
+      fullPath: '/api/public/site-image/$'
+      preLoaderRoute: typeof ApiPublicSiteImageSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   WorkSlugRoute: WorkSlugRoute,
+  ApiPublicSiteImageSplatRoute: ApiPublicSiteImageSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
