@@ -1,16 +1,21 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { WorkFrame } from "@/components/WorkFrame";
 import { getProject, getProjectNeighbours, type Project } from "@/data/projects";
+import { siteImagesQuery } from "@/lib/site-images.functions";
+import { applyImages } from "@/lib/site-images";
 
 export const Route = createFileRoute("/work/$slug")({
-  loader: ({ params }) => {
+  loader: async ({ params, context }) => {
     const project = getProject(params.slug);
     if (!project) throw notFound();
+    await context.queryClient.ensureQueryData(siteImagesQuery);
     return { project, ...getProjectNeighbours(params.slug) };
   },
+
   head: ({ params, loaderData }) => {
     if (!loaderData) {
       return {
@@ -58,12 +63,15 @@ function ProjectNotFound() {
 }
 
 function ProjectDetail() {
-  const { project, prev, next } = Route.useLoaderData() as {
+  const { project: staticProject, prev, next } = Route.useLoaderData() as {
     project: Project;
     prev: Project;
     next: Project;
   };
+  const { data: imageMap } = useSuspenseQuery(siteImagesQuery);
+  const project = applyImages(staticProject, imageMap);
   const [lightbox, setLightbox] = useState<number | null>(null);
+
 
   useEffect(() => {
     if (lightbox === null) return;

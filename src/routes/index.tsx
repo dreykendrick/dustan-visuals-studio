@@ -1,15 +1,18 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowDown, ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { Reveal } from "@/components/Reveal";
 import { WorkFrame } from "@/components/WorkFrame";
-import { sortedProjects } from "@/data/projects";
 import { experience, languages, site, skills, software } from "@/data/site";
+import { siteImagesQuery } from "@/lib/site-images.functions";
+import { applyImagesToAll } from "@/lib/site-images";
 
 const TITLE = "Dustan Kibaja — Graphic & Visual Designer";
 const DESCRIPTION =
   "Portfolio of Dustan Kibaja, a Graphic & Visual Designer based in Dar es Salaam, Tanzania, specializing in branding, social media, campaigns, digital design, and visual communication.";
 
 export const Route = createFileRoute("/")({
+  loader: ({ context }) => context.queryClient.ensureQueryData(siteImagesQuery),
   head: () => ({
     meta: [
       { title: TITLE },
@@ -28,9 +31,12 @@ export const Route = createFileRoute("/")({
 const shell = "mx-auto max-w-[88rem] px-6 md:px-10";
 
 const FALLBACK_COVER = { alt: "Selected design work by Dustan Kibaja" };
-const cover = (i: number) => sortedProjects[i]?.cover ?? FALLBACK_COVER;
 
 function Index() {
+  const { data: imageMap } = useSuspenseQuery(siteImagesQuery);
+  const projects = applyImagesToAll(imageMap);
+  const cover = (i: number) => projects[i]?.cover ?? FALLBACK_COVER;
+
   return (
     <>
       {/* HERO */}
@@ -154,7 +160,7 @@ function Index() {
           </Reveal>
 
           <div className="mt-16 grid gap-x-8 gap-y-16 md:mt-20 md:grid-cols-12 md:gap-y-24">
-            {sortedProjects.map((p, i) => {
+            {projects.map((p, i) => {
               const layouts = [
                 "md:col-span-7",
                 "md:col-span-5 md:mt-24",

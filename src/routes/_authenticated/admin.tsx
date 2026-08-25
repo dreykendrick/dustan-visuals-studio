@@ -171,7 +171,7 @@ function SlotCard({
   slotKey: string;
   label: string;
   alt: string;
-  url?: string;
+  url?: string | undefined;
   busy: boolean;
   onUpload: (file: File) => void;
   onClear: () => void;
