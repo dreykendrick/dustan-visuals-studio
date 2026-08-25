@@ -160,7 +160,7 @@ function Index() {
           </Reveal>
 
           <div className="mt-16 grid gap-x-8 gap-y-16 md:mt-20 md:grid-cols-12 md:gap-y-24">
-            {sortedProjects.map((p, i) => {
+            {projects.map((p, i) => {
               const layouts = [
                 "md:col-span-7",
                 "md:col-span-5 md:mt-24",
