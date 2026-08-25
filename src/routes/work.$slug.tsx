@@ -63,12 +63,15 @@ function ProjectNotFound() {
 }
 
 function ProjectDetail() {
-  const { project, prev, next } = Route.useLoaderData() as {
+  const { project: staticProject, prev, next } = Route.useLoaderData() as {
     project: Project;
     prev: Project;
     next: Project;
   };
+  const { data: imageMap } = useSuspenseQuery(siteImagesQuery);
+  const project = applyImages(staticProject, imageMap);
   const [lightbox, setLightbox] = useState<number | null>(null);
+
 
   useEffect(() => {
     if (lightbox === null) return;
