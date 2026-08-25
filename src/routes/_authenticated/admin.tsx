@@ -44,14 +44,22 @@ function AdminPage() {
   const isAdmin = useQuery({
     queryKey: ["admin", "is-admin"],
     queryFn: async () => {
-      const { data: user } = await supabase.auth.getUser();
-      if (!user.user) return false;
-      const { data } = await supabase
+      const { data: userData, error: authError } = await supabase.auth.getUser();
+      if (authError || !userData?.user) {
+        console.error("[Admin Check] Auth error:", authError);
+        return false;
+      }
+      const { data, error } = await supabase
         .from("user_roles")
         .select("role")
-        .eq("user_id", user.user.id)
+        .eq("user_id", userData.user.id)
         .eq("role", "admin")
         .maybeSingle();
+
+      if (error) {
+        console.error("[Admin Check] Database error:", error);
+        return false;
+      }
       return Boolean(data);
     },
   });
