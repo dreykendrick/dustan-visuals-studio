@@ -12,7 +12,7 @@ export const Route = createFileRoute("/api/public/site-image/$")({
         const path = (params as { _splat?: string })._splat;
         if (!path) return new Response("Not found", { status: 404 });
 
-        const key = process.env["SUPABASE_PUBLISHABLE_KEY"];
+        const key = process.env["SUPABASE_SERVICE_ROLE_KEY"] || process.env["SUPABASE_PUBLISHABLE_KEY"];
         const url = process.env["SUPABASE_URL"];
         if (!key || !url) {
           return new Response("Image service is not configured", { status: 503 });
@@ -34,9 +34,11 @@ export const Route = createFileRoute("/api/public/site-image/$")({
         const { data, error } = await client.storage.from("site-images").download(path);
         if (error || !data) return new Response("Not found", { status: 404 });
 
-        return new Response(data, {
+        const buffer = await data.arrayBuffer();
+        return new Response(buffer, {
           headers: {
             "content-type": data.type || "application/octet-stream",
+            "content-length": buffer.byteLength.toString(),
             "cache-control": "public, max-age=3600",
           },
         });
