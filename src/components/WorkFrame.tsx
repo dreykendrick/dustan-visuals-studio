@@ -24,7 +24,7 @@ export function WorkFrame({ image, className, priority, label, onClick }: WorkFr
       loading={priority ? "eager" : "lazy"}
       decoding="async"
       sizes="(max-width: 768px) 100vw, 50vw"
-      className="h-full w-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+      className="h-auto w-full transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
     />
   ) : (
     <div
@@ -51,7 +51,7 @@ export function WorkFrame({ image, className, priority, label, onClick }: WorkFr
           "block w-full overflow-hidden bg-secondary",
           interactive && "cursor-zoom-in",
         )}
-        style={{ aspectRatio: ratio }}
+        style={image.src ? undefined : { aspectRatio: ratio }}
       >
         {content}
       </Wrapper>

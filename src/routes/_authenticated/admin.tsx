@@ -202,7 +202,7 @@ function SlotCard({
 
       <div className="mt-3 aspect-[4/5] w-full overflow-hidden bg-secondary">
         {url ? (
-          <img src={url} alt={alt} className="h-full w-full object-cover" />
+          <img src={url} alt={alt} className="h-full w-full object-contain" />
         ) : (
           <div className="placeholder-hatch flex h-full w-full items-center justify-center px-4 text-center text-xs text-muted-foreground">
             {alt}
