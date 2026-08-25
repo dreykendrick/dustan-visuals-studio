@@ -1,13 +1,16 @@
 import { createServerFn } from "@tanstack/react-start";
 import { createClient } from "@supabase/supabase-js";
-import { queryOptions } from "@tanstack/react-query";
 import type { Database } from "@/integrations/supabase/types";
 import type { SiteImageMap } from "@/lib/site-images";
 
 export const getSiteImages = createServerFn({ method: "GET" }).handler(
   async (): Promise<SiteImageMap> => {
-    const key = process.env["SUPABASE_PUBLISHABLE_KEY"]!;
-    const url = process.env["SUPABASE_URL"]!;
+    const key = process.env["SUPABASE_PUBLISHABLE_KEY"];
+    const url = process.env["SUPABASE_URL"];
+
+    // The public portfolio must remain available when a self-hosted deployment
+    // has not configured its optional image-management backend yet.
+    if (!key || !url) return {};
 
     const client = createClient<Database>(url, key, {
       auth: { persistSession: false, autoRefreshToken: false },
@@ -31,8 +34,3 @@ export const getSiteImages = createServerFn({ method: "GET" }).handler(
     return map;
   },
 );
-
-export const siteImagesQuery = queryOptions({
-  queryKey: ["site-images"],
-  queryFn: () => getSiteImages(),
-});

@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { WorkFrame } from "@/components/WorkFrame";
 import { getProject, getProjectNeighbours, type Project } from "@/data/projects";
-import { siteImagesQuery } from "@/lib/site-images.functions";
+import { siteImagesQuery } from "@/lib/site-images.query";
 import { applyImages } from "@/lib/site-images";
 
 export const Route = createFileRoute("/work/$slug")({

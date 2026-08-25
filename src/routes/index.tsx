@@ -4,7 +4,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { Reveal } from "@/components/Reveal";
 import { WorkFrame } from "@/components/WorkFrame";
 import { experience, languages, site, skills, software } from "@/data/site";
-import { siteImagesQuery } from "@/lib/site-images.functions";
+import { siteImagesQuery } from "@/lib/site-images.query";
 import { applyImagesToAll } from "@/lib/site-images";
 
 const TITLE = "Dustan Kibaja — Graphic & Visual Designer";
