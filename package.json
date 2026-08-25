@@ -1,5 +1,7 @@
 {
-  "name": "tanstack_start_ts",
+  "name": "dustan-visuals-studio",
+  "description": "Portfolio of Dustan Kibaja, a Graphic & Visual Designer.",
+  "author": "Dustan Kibaja",
   "private": true,
   "sideEffects": false,
   "type": "module",

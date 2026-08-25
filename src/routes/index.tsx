@@ -7,7 +7,7 @@ import { experience, languages, site, skills, software } from "@/data/site";
 import { siteImagesQuery } from "@/lib/site-images.query";
 import { applyImagesToAll } from "@/lib/site-images";
 
-const TITLE = "Dustan Kibaja — Graphic & Visual Designer";
+const TITLE = "Dustan Kibaja - Graphic & Visual Designer";
 const DESCRIPTION =
   "Portfolio of Dustan Kibaja, a Graphic & Visual Designer based in Dar es Salaam, Tanzania, specializing in branding, social media, campaigns, digital design, and visual communication.";
 
@@ -17,11 +17,14 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: TITLE },
       { name: "description", content: DESCRIPTION },
+      { name: "keywords", content: "Graphic Designer, Visual Designer, Portfolio, Dustan Kibaja, Dar es Salaam, Tanzania, Branding, Social Media Design, Campaigns" },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://dustan-visuals-studio.lovable.app" },
+      { property: "og:image", content: "/favicon.png" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
+      { name: "twitter:image", content: "/favicon.png" },
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),
