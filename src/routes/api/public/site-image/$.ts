@@ -12,8 +12,8 @@ export const Route = createFileRoute("/api/public/site-image/$")({
         const path = (params as { _splat?: string })._splat;
         if (!path) return new Response("Not found", { status: 404 });
 
-        const key = process.env["SUPABASE_SERVICE_ROLE_KEY"] || process.env["SUPABASE_PUBLISHABLE_KEY"];
-        const url = process.env["SUPABASE_URL"];
+        const key = process.env["SUPABASE_SERVICE_ROLE_KEY"] || process.env["SUPABASE_PUBLISHABLE_KEY"] || import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"];
+        const url = process.env["SUPABASE_URL"] || import.meta.env["VITE_SUPABASE_URL"];
         if (!key || !url) {
           return new Response("Image service is not configured", { status: 503 });
         }

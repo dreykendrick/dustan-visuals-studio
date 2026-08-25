@@ -5,8 +5,8 @@ import type { SiteImageMap } from "@/lib/site-images";
 
 export const getSiteImages = createServerFn({ method: "GET" }).handler(
   async (): Promise<SiteImageMap> => {
-    const key = process.env["SUPABASE_PUBLISHABLE_KEY"];
-    const url = process.env["SUPABASE_URL"];
+    const key = process.env["SUPABASE_PUBLISHABLE_KEY"] || import.meta.env["VITE_SUPABASE_PUBLISHABLE_KEY"];
+    const url = process.env["SUPABASE_URL"] || import.meta.env["VITE_SUPABASE_URL"];
 
     // The public portfolio must remain available when a self-hosted deployment
     // has not configured its optional image-management backend yet.
