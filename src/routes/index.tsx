@@ -215,7 +215,11 @@ function Index() {
         <div className={`${shell} grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20`}>
           <Reveal>
             <WorkFrame
-              image={{ alt: "Professional portrait of Dustan Kibaja", ratio: "4/5" }}
+              image={{
+                alt: "Professional portrait of Dustan Kibaja",
+                ratio: "4/5",
+                src: imageMap["about:portrait"],
+              }}
               label="Portrait placeholder"
             />
           </Reveal>

@@ -143,6 +143,21 @@ function AdminPage() {
       {error ? <p className="mt-8 text-sm text-signal">{error}</p> : null}
 
       <div className="mt-14 space-y-16">
+        <div>
+          <h2 className="font-display text-2xl font-medium">Global Site Images</h2>
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <SlotCard
+              slotKey="about:portrait"
+              label="Portrait Image (About section)"
+              alt="Professional portrait of Dustan Kibaja"
+              url={map["about:portrait"]}
+              busy={busySlot === "about:portrait"}
+              onUpload={(file) => upload("about:portrait", file)}
+              onClear={() => clear("about:portrait")}
+            />
+          </div>
+        </div>
+
         {imageSlots.map((project) => (
           <div key={project.slug}>
             <h2 className="font-display text-2xl font-medium">{project.title}</h2>
